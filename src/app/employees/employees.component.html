@@ -1,0 +1,106 @@
+<div class="container readex rouynded my-3" >
+
+    <div class="row py-3 border-bottom">
+        <div class="col-12">
+            <app-add-employee [isLoading]="isLoading" (saved)="saveEmployee($event)"></app-add-employee>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-12 fw-bold fs-6 text-center pt-2">
+            Employee Data
+        </div>
+    </div>
+    <div class="row justify-content-between mb-2">
+        <div class="col-lg-3 col-12">
+            <input
+            id="table-complete-search"
+            type="text"
+            class="form-control form-control-sm"
+            name="searchTerm"
+            placeholder="Search.."
+            [(ngModel)]="service.searchTerm"
+            />
+        </div>
+
+        <div class="col-lg-6 col-12 d-flex flex-row gap-2 justify-content-end">
+            <div>
+                <select class="form-select form-select-sm" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+                    <option [ngValue]="2">2 items</option>
+                    <option [ngValue]="4">4 items</option>
+                    <option [ngValue]="6">6 items</option>
+                    <option [ngValue]="8">8 items</option>
+                    <option [ngValue]="10">10 items</option>
+                </select>
+            </div>
+            <ngb-pagination size="sm" [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+            </ngb-pagination>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive border rounded">
+                <table class="table align-middle table-sm fs-7 table-hover">
+                    <thead>
+                        <tr class="text-muted text-nowrap fs-7">
+                            <th scope="col" class="text-muted">#</th>
+                            <th scope="col" class="text-muted" sortable="name" (sort)="onSort($event)">Name & Username</th>
+                            <th scope="col" class="text-muted" >Email</th>
+                            <th scope="col" class="text-muted text-nowrap" >Phone No.</th>
+                            <th class="text-muted text-nowrap">Website & Company Name</th>
+                            <th class="text-muted text-nowrap" scope="col">Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of employee$ | async; track item.id) {
+                            <tr class="lh-1 fs-7">
+                                <th scope="row">{{ item.id }}</th>
+                                <td>
+                                  <div class="d-flex flex-column">
+                                    <span class="fw-medium"><ngb-highlight [result]="item.name" [term]="service.searchTerm" /></span>
+                                    <small class="text-muted pt-1"><ngb-highlight [result]="item.username" [term]="service.searchTerm" /></small>
+                                  </div>
+                                </td>
+                                <td>
+                                  <ngb-highlight [result]="item?.email" [term]="service.searchTerm" />
+                                </td>
+                                <td>
+                                  <ngb-highlight [result]="item?.phone" [term]="service.searchTerm" />
+                                </td>
+                                <td>
+                                  <div class="d-flex flex-column">
+                                    <span class="fw-medium"><ngb-highlight [result]="item?.website" [term]="service.searchTerm" /></span>
+                                    <small class="text-muted pt-1"><ngb-highlight [result]="item?.company?.name" [term]="service.searchTerm" /></small>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="d-flex flex-row">
+                                    <small class="text-muted" *ngIf="item?.address?.city">
+                                        <ngb-highlight [result]="item?.address?.city" [term]="service.searchTerm" />
+                                    </small>
+                                    <small class="text-muted" *ngIf="item?.address?.street">
+                                        <ngb-highlight [result]="', ' + item?.address?.street" [term]="service.searchTerm" />
+                                    </small>
+                                    <small class="text-muted" *ngIf="item?.address?.suite">
+                                        <ngb-highlight [result]="', ' + item?.address?.suite" [term]="service.searchTerm" />
+                                    </small>
+
+                                    <small class="text-muted" *ngIf="item?.address?.zipcode">
+                                        <ngb-highlight [result]="', ' + item?.address?.zipcode" [term]="service.searchTerm" />
+                                    </small>
+                                  </div>
+                                </td>
+                              </tr>
+                              
+                        } @empty {
+                            <tr>
+                                <td colspan="6" style="text-align: center">No matching query found `{{service.searchTerm}}`</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

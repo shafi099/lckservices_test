@@ -1,0 +1,122 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Readex+Pro:wght@160..700&display=swap');
+
+@keyframes loader_5191 {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .square {
+    background: #ddd;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -5px;
+    margin-left: -5px;
+  }
+  
+  #sq1 {
+    margin-top: -25px;
+    margin-left: -25px;
+    animation: loader_5191 675ms ease-in-out 0s infinite alternate;
+  }
+  
+  #sq2 {
+    margin-top: -25px;
+    animation: loader_5191 675ms ease-in-out 75ms infinite alternate;
+  }
+  
+  #sq3 {
+    margin-top: -25px;
+    margin-left: 15px;
+    animation: loader_5191 675ms ease-in-out 150ms infinite;
+  }
+  
+  #sq4 {
+    margin-left: -25px;
+    animation: loader_5191 675ms ease-in-out 225ms infinite;
+  }
+  
+  #sq5 {
+    animation: loader_5191 675ms ease-in-out 300ms infinite;
+  }
+  
+  #sq6 {
+    margin-left: 15px;
+    animation: loader_5191 675ms ease-in-out 375ms infinite;
+  }
+  
+  #sq7 {
+    margin-top: 15px;
+    margin-left: -25px;
+    animation: loader_5191 675ms ease-in-out 450ms infinite;
+  }
+  
+  #sq8 {
+    margin-top: 15px;
+    animation: loader_5191 675ms ease-in-out 525ms infinite;
+  }
+  
+  #sq9 {
+    margin-top: 15px;
+    margin-left: 15px;
+    animation: loader_5191 675ms ease-in-out 600ms infinite;
+  }
+  
+.form-control:focus{
+    border: 1px solid #007dfa !important;
+    box-shadow: 0 0 5px rgba(0, 128, 255, 0.5) !important; /* Optional: Add a custom shadow */
+}
+
+.form-floating {
+    label {
+      top: 0;
+      left: 0;
+      position: absolute;
+    }
+  }
+.form-select:focus{
+    border: 1px solid #007dfa !important;
+    box-shadow: 0 0 5px rgba(0, 128, 255, 0.5) !important; /* Optional: Add a custom shadow */
+}
+
+.form-control::placeholder {
+    color: #dbdbdb;
+    font-size: 13px;
+    font-weight: 300;
+}   
+
+.form-control::webkit-input-placeholder {
+    color: #dbdbdb;
+    font-size: 13px;
+    font-weight: 300;
+}   
+
+.nunito {
+    font-family: "Nunito", serif;
+}
+
+.readex {
+    font-family: "Readex Pro", serif;
+}
+
+.ibm-plex-sans {
+    font-family: "IBM Plex Sans", serif;
+  }
+
+body{
+    background-color: #F8FAFC;
+}
+
+.fs-7{
+    font-size: 12px;
+}

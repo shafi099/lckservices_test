@@ -1,0 +1,132 @@
+<!-- employees.component.html -->
+<div class="container fs-7">
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-12 fs-6 fw-semibold text-center">
+          Add New Employee
+        </div>
+      </div>
+        <div class="row py-3">
+          <!-- <div class="col-12 fs-5 fw-semibold">
+            Details
+          </div> -->
+          <div class="col-12 px-5">
+            <div class="row">
+              <div class="col-lg-1 col-4">
+                <label for="id" class="form-label mb-0 fw-medium">Emp ID<span class="text-danger">*</span></label>
+                <input [spellcheck]="false" id="id" type="number" placeholder="Enter ID" 
+                [class.border-danger]="employeeForm.get('id')?.invalid && errors"
+                 [min]="1" [minlength]="1" [maxlength]="3" class="form-control form-control-sm border fw-semibold" formControlName="id" />
+              </div>
+          
+              <div class="col-lg-3 col-12">
+                <label for="name" class="form-label mb-0 fw-medium">Name<span class="text-danger">*</span></label>
+                <input [spellcheck]="false" id="name" placeholder="Enter name" 
+                [class.border-danger]="employeeForm.get('name')?.invalid && errors"
+                [minlength]="3" [maxlength]="100"  
+                (input)="writeName($event)" 
+                class="form-control form-control-sm border fw-semibold" formControlName="name" />
+              </div>
+
+              <!-- -->
+          
+              <div class="col-lg-2 col-12">
+                <label for="username" class="form-label mb-0 fw-medium">Username<span class="text-danger">*</span></label>
+                <input [spellcheck]="false" id="username" placeholder="Enter Username"
+                (input)="writeUserName($event)" 
+                [class.border-danger]="employeeForm.get('username')?.invalid && errors"
+                class="form-control form-control-sm border" formControlName="username" />
+              </div>
+          
+              <div class="col-lg-3 col-12">
+                <label for="email" class="form-label mb-0 fw-medium">Email</label>
+                <input [spellcheck]="false" id="email" placeholder="Enter Mail Id" class="form-control form-control-sm border" formControlName="email" />
+              </div>
+          
+              <div class="col-lg-2 col-12">
+                <label for="phone" class="form-label mb-0 fw-medium">Phone<span class="text-danger">*</span></label>
+                <input [spellcheck]="false" id="phone" placeholder="+91 xxxxxxxxxx" 
+                [maxlength]="10" [minlength]="10"
+                [class.border-danger]="employeeForm.get('phone')?.invalid && errors"
+                class="form-control form-control-sm border" type="text"  formControlName="phone" />
+              </div>
+          
+              <div class="col-lg-3 col-12">
+                <label for="website" class="form-label mb-0 fw-medium">Website</label>
+                <input [spellcheck]="false" id="website" placeholder="Enter URL" class="form-control form-control-sm border" formControlName="website" />
+              </div>
+              </div>
+          </div>
+            
+        </div>
+
+        <div class="row py-2">
+          <!-- <div class="col-12 fs-5 fw-semibold">
+            Company Details
+          </div> -->
+          <div class="col-12 px-5">
+            <div class="row">
+              <div class="col-lg-4 col-6">
+                <label for="companyName" class="form-label mb-0 fw-medium">Company Name</label>
+                <input [spellcheck]="false" id="companyName" placeholder="Enter Company Name" class="form-control form-control-sm border" formControlName="companyname" />
+              </div>
+              <div class="col-lg-4 col-6">
+                <label for="companyCatchPhrase" class="form-label mb-0 fw-medium">Catchphrase</label>
+                <input [spellcheck]="false" id="companyCatchPhrase" placeholder="Enter phrase" class="form-control form-control-sm border" formControlName="catchPhrase" />
+              </div>
+              <div class="col-lg-4 col-6">
+                <label for="companyBs" class="form-label mb-0 fw-medium">BS</label>
+                <input [spellcheck]="false" id="companyBs" placeholder="Enter BS" class="form-control form-control-sm border" formControlName="bs" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-2 py-2">
+          <!-- <div class="col-12 fs-5 fw-semibold">
+            Address
+          </div> -->
+
+          <div class="col-12 px-5">
+            <div class="row">
+              <div class="col-lg-3 col-6">
+                <label for="street" class="form-label mb-0 fw-medium">Street</label>
+                <input [spellcheck]="false" placeholder="Enter Street Name" id="street" class="form-control form-control-sm border" formControlName="street" />
+              </div>
+              <div class="col-lg-2 col-6">
+                <label for="suite" class="form-label mb-0 fw-medium">Suite</label>
+                <input [spellcheck]="false" id="suite" placeHolder="Enter Suite" class="form-control form-control-sm border" formControlName="suite" />
+              </div>
+              <div class="col-lg-2 col-6">
+                <label for="city" class="form-label mb-0 fw-medium">City <span class="text-danger">*</span></label>
+                <input [spellcheck]="false" id="city" placeholder="Enter City" 
+                [class.border-danger]="employeeForm.get('city')?.invalid && errors"
+                class="form-control form-control-sm border" formControlName="city" />
+              </div>
+              <div class="col-lg-2 col-6">
+                <label for="zipcode" class="form-label mb-0 fw-medium">Zipcode</label>
+                <input [spellcheck]="false" id="zipcode" placeholder="Enter Zipcode" class="form-control form-control-sm border" formControlName="zipcode" />
+              </div>
+              <div class="col-lg-1 col-6">
+                <label for="lat" class="form-label mb-0 fw-medium">Latitude</label>
+                <input [spellcheck]="false" id="lat" placeholder="° C" class="form-control form-control-sm border" formControlName="lat" />
+              </div>
+              <div class="col-lg-1 col-6">
+                <label for="lng" class="form-label mb-0 fw-medium">Longitude</label>
+                <input [spellcheck]="false" id="lng" placeholder="° C" class="form-control form-control-sm border" formControlName="lng" />
+              </div>
+            </div>
+          </div>
+            
+          </div>
+  
+          <span class="text-danger text-nowrap fw-normal"
+          style="font-style: italic;"
+           *ngIf="errors && employeeForm.invalid">{{errorString}} required.</span>
+
+        <button type="submit" class="btn btn-success btn-sm float-end" [disabled]="isLoading" >
+          {{isLoading ? 'Saving.. Please Wait' : 'Save Employee'}}
+        </button>
+    </form>
+  </div>
+  
