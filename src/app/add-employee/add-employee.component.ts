@@ -33,7 +33,8 @@ export class AddEmployeeComponent {
       name: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', ],
-      phone: ['',  Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+
       website: ['', ],
 
       companyname: ['', ],
@@ -88,8 +89,10 @@ export class AddEmployeeComponent {
   onSubmit() {
     if (this.employeeForm.valid) {
       this.saved.emit(this.getModel());
+      this.employeeForm.reset();
+      this.createEmployeeForm();
+      this.errors = false;
     } else {
-      // console.log('Form is invalid');
       this.errors = true;
       let arr : any = [];
       Object.keys(this.employeeForm.controls).forEach(controlName => {
@@ -99,6 +102,11 @@ export class AddEmployeeComponent {
 
       this.errorString = arr.join(', ');
     }
+  }
+
+  writeNumbers(event: any, type: any){
+    // .replace(/\D/g, '');
+    this.employeeForm.get(type)?.setValue(event.target.value.replace(/\D/g, ''));
   }
 
   writeUserName(event: any){

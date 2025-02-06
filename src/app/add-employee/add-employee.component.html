@@ -14,8 +14,9 @@
             <div class="row">
               <div class="col-lg-1 col-4">
                 <label for="id" class="form-label mb-0 fw-medium">Emp ID<span class="text-danger">*</span></label>
-                <input [spellcheck]="false" id="id" type="number" placeholder="Enter ID" 
+                <input [spellcheck]="false" id="id" type="text" placeholder="Enter ID" 
                 [class.border-danger]="employeeForm.get('id')?.invalid && errors"
+                (input)="writeNumbers($event, 'id')"
                  [min]="1" [minlength]="1" [maxlength]="3" class="form-control form-control-sm border fw-semibold" formControlName="id" />
               </div>
           
@@ -47,6 +48,7 @@
                 <label for="phone" class="form-label mb-0 fw-medium">Phone<span class="text-danger">*</span></label>
                 <input [spellcheck]="false" id="phone" placeholder="+91 xxxxxxxxxx" 
                 [maxlength]="10" [minlength]="10"
+                (input)="writeNumbers($event, 'phone')"
                 [class.border-danger]="employeeForm.get('phone')?.invalid && errors"
                 class="form-control form-control-sm border" type="text"  formControlName="phone" />
               </div>
